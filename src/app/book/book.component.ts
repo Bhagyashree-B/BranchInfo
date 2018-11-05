@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class BookComponent implements OnInit {
 
   books: any;
-  displayedColumns = ['isbn', 'title', 'author'];
+  displayedColumns = ['शाखा क़मांक', 'शाखा गाव', 'शाखा प्रमुख नाव','शाखा प्रमुख मोबाईल क़मांक', 'companies','sadasya'];
   dataSource = new BookDataSource(this.api);
 
   constructor(private api: ApiService) { }
@@ -19,7 +19,7 @@ export class BookComponent implements OnInit {
   ngOnInit() {
     this.api.getBooks()
       .subscribe(res => {
-        console.log(res);
+        console.log("Result =====> " + res);
         this.books = res;
       }, err => {
         console.log(err);

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng build && node ./bin/www",
     "build": "ng build",
+    "stop": "ng stop",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

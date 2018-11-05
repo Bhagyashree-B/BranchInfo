@@ -2,7 +2,7 @@
   <a mat-raised-button color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a>
 </div>
 <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
-  <!-- <h1>शिवसेना शाखा माहिती </h1> -->
+  <h3>शिवसेना शाखा माहिती </h3>
   <mat-form-field class="example-full-width">
     <input matInput placeholder="शाखा क़मांक" formControlName="isbn"
            [errorStateMatcher]="matcher">
@@ -50,59 +50,66 @@
 
   <div formArrayName="companies">
     <div *ngFor="let comp of bookForm.get('companies').controls; index as i">    
-      <h3>Booth Pramukh {{i+1}}: </h3>
+      <h3>बूथ प्रमुख {{i+1}}: </h3>
       <div [formGroupName]="i">
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="Name" formControlName="boothName"
+              <input matInput placeholder="नाव" formControlName="boothName"
                      [errorStateMatcher]="matcher">
               <mat-error>
                 <span *ngIf="!bookForm.get('boothName').valid && bookForm.get('boothName').touched">कृपया हे भरा</span>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Mobile Number:" formControlName="boothMoNumber"
+                <input matInput placeholder="मोबाईल क़मांक" formControlName="boothMoNumber"
                        [errorStateMatcher]="matcher">
                 <mat-error>
                   <span *ngIf="!bookForm.get('boothMoNumber').valid && bookForm.get('boothMoNumber').touched">कृपया हे भरा</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Booth Number: " formControlName="boothNumber"
+                  <input matInput placeholder="बूथ क़मांक: " formControlName="boothNumber"
                          [errorStateMatcher]="matcher">
                   <mat-error>
                     <span *ngIf="!bookForm.get('boothNumber').valid && bookForm.get('boothNumber').touched">कृपया हे भरा</span>
                   </mat-error>
-                </mat-form-field>     
-        <span><button (click)="deleteCompany(i)">Delete Company</button></span>
+                </mat-form-field>    
+                <!-- <mat-card-actions>
+                  <a mat-raised-button color="warn" (click)="deleteCompany(i)"><mat-icon>delete</mat-icon></a>
+                </mat-card-actions>  -->
       </div>
     </div>
   </div> 
-  <button (click)="addNewCompany()">Add new Company</button>  
+  <mat-card-actions>
+    <a mat-raised-button color="primary" (click)="addNewCompany()"><mat-icon>add</mat-icon></a>
+  </mat-card-actions> 
 
   <div formArrayName="sadasya">
       <div *ngFor="let comp of bookForm.get('sadasya').controls; index as i">    
-        <h3>Sadasya {{i+1}}: </h3>
+        <h3>सदस्य {{i+1}}: </h3>
         <div [formGroupName]="i">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Name" formControlName="sadasyaName"
+                <input matInput placeholder="नाव" formControlName="sadasyaName"
                        [errorStateMatcher]="matcher">
                 <mat-error>
                   <span *ngIf="!bookForm.get('sadasyaName').valid && bookForm.get('sadasyaName').touched">कृपया हे भरा</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Mobile Number:" formControlName="sadasyaMoNumber"
+                  <input matInput placeholder="मोबाईल क़मांक" formControlName="sadasyaMoNumber"
                          [errorStateMatcher]="matcher">
                   <mat-error>
                     <span *ngIf="!bookForm.get('sadasyaMoNumber').valid && bookForm.get('sadasyaMoNumber').touched">कृपया हे भरा</span>
                   </mat-error>
                 </mat-form-field>    
-          <span><button (click)="deleteSadasya(i)">Delete Sadasya</button></span>
+                <!-- <mat-card-actions>
+                  <a mat-raised-button color="warn" (click)="deleteSadasya(i)"><mat-icon>delete</mat-icon></a>
+                </mat-card-actions> -->
         </div>
       </div>
     </div> 
-    <button (click)="addNewSadasya()">Add new Sadasya</button>  
-  
+    <mat-card-actions>
+      <a mat-raised-button color="primary" (click)="addNewSadasya()"><mat-icon>add</mat-icon></a>
+    </mat-card-actions>  
 
 <div class="form-group">
   <div class="button-row">
