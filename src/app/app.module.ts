@@ -43,9 +43,10 @@ const appRoutes: Routes = [
     component: BookEditComponent,
     data: { title: 'Edit Book' }
   },
-  { path: '',
-    redirectTo: '/books',
-    pathMatch: 'full'
+  { 
+    path: 'book-create',
+    component: BookCreateComponent,
+    data: { title: 'Create Book' }
   }
 ];
 

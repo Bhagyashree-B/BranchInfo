@@ -32,97 +32,57 @@ export class BookCreateComponent implements OnInit {
       'author' : [null, Validators.required],
       'publisher':[null, Validators.required],
       'published_year':[null, Validators.required],
-      companies: this.formBuilder.array([{
+      'companies': this.formBuilder.array([
+        this.formBuilder.group({
         'boothName' : [null, Validators.required],
         'boothMoNumber':[null, Validators.required],
         'boothNumber':[null, Validators.required]
-      }]),
-      sadasya : this.formBuilder.array([{
+      })]),
+      'sadasya' : this.formBuilder.array([
+        this.formBuilder.group({
         'sadasyaName' : [null, Validators.required],
         'sadasyaMoNumber' : [null, Validators.required]
-      }])
+      })])
     });
   }
 
 /////////////////////////////////
 
-data = {
-  company: [
-    {
-      boothName: "example comany",
-      boothMoNumber : "asda",
-      boothNumber : "asdsd"
-    }],
-  sadasya : [{
-    sadasyaName : "",
-    sadasyaMoNumber : ""
-  }]
-}
+  get companies() {
+    return this.bookForm.get('companies') as FormArray;
+  }
+
   addNewCompany() {
-    let control = <FormArray>this.bookForm.controls.companies;
-    control.push(
-      this.formBuilder.group({
-        company: [{
-           boothName: "example comany",
-           boothMoNumber : "",
-           boothNumber : ""
-        }]
-      })
-    )
+    this.companies.push(this.formBuilder.group({ boothName: '',boothMoNumber : '',boothNumber : ''}));
   }
 
   deleteCompany(index) {
-    let control = <FormArray>this.bookForm.controls.companies;
-    control.removeAt(index)
+    this.companies.removeAt(index);
   }
 
-
-  setCompanies() {
-    let control = <FormArray>this.bookForm.controls.companies;
-    this.data.company.forEach(x => {
-      control.push(this.formBuilder.group({ 
-        boothName: x.boothName,
-        boothMoNumber : x.boothMoNumber,
-        boothNumber : x.boothNumber }))
-    })
-  }
 
 /////////////////
 
+
+get sadasya() {
+  return this.bookForm.get('sadasya') as FormArray;
+}
+
 addNewSadasya() {
-  let control = <FormArray>this.bookForm.controls.sadasya;
-  control.push(
-    this.formBuilder.group({
-      sadasya: [{
-        sadasyaName : '',
-        sadasyaMoNumber : ''
-      }]
-    })
-  )
+  this.sadasya.push(this.formBuilder.group({ sadasyaName: '',sadasyaMoNumber : ''}));
 }
 
 deleteSadasya(index) {
-  let control = <FormArray>this.bookForm.controls.sadasya;
-  control.removeAt(index)
+  this.sadasya.removeAt(index);
 }
-
-setSadasya() {
-  let control = <FormArray>this.bookForm.controls.sadasya;
-  this.data.sadasya.forEach(x => {
-    control.push(this.formBuilder.group({ 
-      sadasyaName : x.sadasyaName,
-      sadasyaMoNumber : x.sadasyaMoNumber }))
-  })
-}
-
 
 /////////////////
 
   onFormSubmit(form:NgForm) {
     this.api.postBook(form)
       .subscribe(res => {
-          let id = res['_id'];
-          this.router.navigate(['/book-details', id]);
+          // let id = res['_id'];
+          this.router.navigate(['/books']);
         }, (err) => {
           console.log(err);
         });

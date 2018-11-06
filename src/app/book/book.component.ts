@@ -20,6 +20,9 @@ export class BookComponent implements OnInit {
     this.api.getBooks()
       .subscribe(res => {
         console.log("Result =====> " + res);
+        res.array.forEach(element => {
+          console.log(element)
+        });
         this.books = res;
       }, err => {
         console.log(err);

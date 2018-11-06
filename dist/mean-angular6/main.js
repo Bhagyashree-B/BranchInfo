@@ -85,6 +85,7 @@ var ApiService = /** @class */ (function () {
         return this.http.get(url, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ApiService.prototype.postBook = function (data) {
+        console.log(data);
         return this.http.post(apiUrl, data, httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
@@ -230,9 +231,10 @@ var appRoutes = [
         component: _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_9__["BookEditComponent"],
         data: { title: 'Edit Book' }
     },
-    { path: '',
-        redirectTo: '/books',
-        pathMatch: 'full'
+    {
+        path: 'book-create',
+        component: _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_8__["BookCreateComponent"],
+        data: { title: 'Create Book' }
     }
 ];
 var AppModule = /** @class */ (function () {
@@ -293,7 +295,7 @@ module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/books']\"><mat-icon>list</mat-icon></a>\n</div>\n<form [formGroup]=\"bookForm\" (ngSubmit)=\"onFormSubmit(bookForm.value)\">\n  <h3>शिवसेना शाखा माहिती </h3>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा क़मांक\" formControlName=\"isbn\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('isbn').valid && bookForm.get('isbn').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा गाव\" formControlName=\"title\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('title').valid && bookForm.get('title').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख नाव\" formControlName=\"author\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('author').valid && bookForm.get('author').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख मोबाईल क़मांक\" formControlName=\"description\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('description').valid && bookForm.get('description').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\" >\n    <input matInput placeholder=\"शाखा उप प्रमुख नाव\" formControlName=\"publisher\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('publisher').valid && bookForm.get('publisher').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा उप प्रमुख मोबाईल क़मांक\" formControlName=\"published_year\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('published_year').valid && bookForm.get('published_year').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <div formArrayName=\"companies\">\n    <div *ngFor=\"let comp of bookForm.get('companies').controls; index as i\">    \n      <h3>बूथ प्रमुख {{i+1}}: </h3>\n      <div [formGroupName]=\"i\">\n          <mat-form-field class=\"example-full-width\">\n              <input matInput placeholder=\"नाव\" formControlName=\"boothName\"\n                     [errorStateMatcher]=\"matcher\">\n              <mat-error>\n                <span *ngIf=\"!bookForm.get('boothName').valid && bookForm.get('boothName').touched\">कृपया हे भरा</span>\n              </mat-error>\n            </mat-form-field>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"boothMoNumber\"\n                       [errorStateMatcher]=\"matcher\">\n                <mat-error>\n                  <span *ngIf=\"!bookForm.get('boothMoNumber').valid && bookForm.get('boothMoNumber').touched\">कृपया हे भरा</span>\n                </mat-error>\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"बूथ क़मांक: \" formControlName=\"boothNumber\"\n                         [errorStateMatcher]=\"matcher\">\n                  <mat-error>\n                    <span *ngIf=\"!bookForm.get('boothNumber').valid && bookForm.get('boothNumber').touched\">कृपया हे भरा</span>\n                  </mat-error>\n                </mat-form-field>    \n                <!-- <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteCompany(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions>  -->\n      </div>\n    </div>\n  </div> \n  <mat-card-actions>\n    <a mat-raised-button color=\"primary\" (click)=\"addNewCompany()\"><mat-icon>add</mat-icon></a>\n  </mat-card-actions> \n\n  <div formArrayName=\"sadasya\">\n      <div *ngFor=\"let comp of bookForm.get('sadasya').controls; index as i\">    \n        <h3>सदस्य {{i+1}}: </h3>\n        <div [formGroupName]=\"i\">\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"नाव\" formControlName=\"sadasyaName\"\n                       [errorStateMatcher]=\"matcher\">\n                <mat-error>\n                  <span *ngIf=\"!bookForm.get('sadasyaName').valid && bookForm.get('sadasyaName').touched\">कृपया हे भरा</span>\n                </mat-error>\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"sadasyaMoNumber\"\n                         [errorStateMatcher]=\"matcher\">\n                  <mat-error>\n                    <span *ngIf=\"!bookForm.get('sadasyaMoNumber').valid && bookForm.get('sadasyaMoNumber').touched\">कृपया हे भरा</span>\n                  </mat-error>\n                </mat-form-field>    \n                <!-- <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteSadasya(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions> -->\n        </div>\n      </div>\n    </div> \n    <mat-card-actions>\n      <a mat-raised-button color=\"primary\" (click)=\"addNewSadasya()\"><mat-icon>add</mat-icon></a>\n    </mat-card-actions>  \n\n<div class=\"form-group\">\n  <div class=\"button-row\">\n    <button type=\"submit\" [disabled]=\"!bookForm.valid\" mat-raised-button color=\"primary\"><mat-icon>save</mat-icon></button>\n  </div>\n  </div>\n</form>\n"
+module.exports = "<!-- <div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/books']\"><mat-icon>list</mat-icon></a>\n</div> -->\n<form [formGroup]=\"bookForm\" (ngSubmit)=\"onFormSubmit(bookForm.value)\">\n  <h3>शिवसेना शाखा माहिती </h3>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा क़मांक\" formControlName=\"isbn\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('isbn').valid && bookForm.get('isbn').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा गाव\" formControlName=\"title\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('title').valid && bookForm.get('title').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख नाव\" formControlName=\"author\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('author').valid && bookForm.get('author').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख मोबाईल क़मांक\" formControlName=\"description\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('description').valid && bookForm.get('description').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\" >\n    <input matInput placeholder=\"शाखा उप प्रमुख नाव\" formControlName=\"publisher\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('publisher').valid && bookForm.get('publisher').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा उप प्रमुख मोबाईल क़मांक\" formControlName=\"published_year\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('published_year').valid && bookForm.get('published_year').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <div formArrayName=\"companies\">\n      <div *ngFor=\"let item of companies.controls; let pointIndex=index\" [formGroupName]=\"pointIndex\" >\n    <!-- <div *ngFor=\"let comp of bookForm.get('companies').controls; index as i\">     -->\n      <h3>बूथ प्रमुख {{pointIndex+1}}: </h3>\n      <div >\n          <mat-form-field class=\"example-full-width\">\n              <input matInput placeholder=\"नाव\" formControlName=\"boothName\">\n                     <!-- [errorStateMatcher]=\"matcher\"> -->\n              <!-- <mat-error>\n                <span *ngIf=\"!bookForm.get('companies.boothName').valid && bookForm.get('companies.boothName').touched\">कृपया हे भरा</span>\n              </mat-error> -->\n            </mat-form-field>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"boothMoNumber\">\n                       <!-- [errorStateMatcher]=\"matcher\" -->\n                <!-- <mat-error>\n                  <span *ngIf=\"!bookForm.get('boothMoNumber').valid && bookForm.get('boothMoNumber').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"बूथ क़मांक: \" formControlName=\"boothNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\" -->\n                  <!-- <mat-error>\n                    <span *ngIf=\"!bookForm.get('boothNumber').valid && bookForm.get('boothNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteCompany(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions> \n      </div>\n    </div>\n  </div> \n  <mat-card-actions>\n    <a mat-raised-button color=\"primary\" (click)=\"addNewCompany()\"><mat-icon>add</mat-icon></a>\n  </mat-card-actions> \n\n  <div formArrayName=\"sadasya\">\n      <div *ngFor=\"let item of sadasya.controls; let sadasyaIndex=index\" [formGroupName]=\"sadasyaIndex\" >\n      <!-- <div *ngFor=\"let comp of bookForm.get('sadasya').controls; index as i\">     -->\n        <h3>सदस्य {{sadasyaIndex+1}}: </h3>\n        <div>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"नाव\" formControlName=\"sadasyaName\">\n                       <!-- [errorStateMatcher]=\"matcher\">\n                <mat-error>\n                  <span *ngIf=\"!bookForm.get('sadasyaName').valid && bookForm.get('sadasyaName').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"sadasyaMoNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\">\n                  <mat-error>\n                    <span *ngIf=\"!bookForm.get('sadasyaMoNumber').valid && bookForm.get('sadasyaMoNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteSadasya(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions>\n        </div>\n      </div>\n    </div> \n    <mat-card-actions>\n      <a mat-raised-button color=\"primary\" (click)=\"addNewSadasya()\"><mat-icon>add</mat-icon></a>\n    </mat-card-actions>  \n\n<div class=\"form-group\">\n  <div class=\"button-row\">\n    <button type=\"submit\" [disabled]=\"!bookForm.valid\" mat-raised-button color=\"primary\"><mat-icon>save</mat-icon></button>\n  </div>\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -340,20 +342,6 @@ var BookCreateComponent = /** @class */ (function () {
         this.boothNumber = '';
         this.sadasyaName = '';
         this.sadasyaMoNumber = '';
-        /////////////////////////////////
-        this.data = {
-            company: [
-                {
-                    boothName: "example comany",
-                    boothMoNumber: "asda",
-                    boothNumber: "asdsd"
-                }
-            ],
-            sadasya: [{
-                    sadasyaName: "",
-                    sadasyaMoNumber: ""
-                }]
-        };
     }
     BookCreateComponent.prototype.ngOnInit = function () {
         this.bookForm = this.formBuilder.group({
@@ -363,73 +351,56 @@ var BookCreateComponent = /** @class */ (function () {
             'author': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'publisher': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'published_year': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            companies: this.formBuilder.array([{
+            'companies': this.formBuilder.array([
+                this.formBuilder.group({
                     'boothName': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
                     'boothMoNumber': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
                     'boothNumber': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
-                }]),
-            sadasya: this.formBuilder.array([{
+                })
+            ]),
+            'sadasya': this.formBuilder.array([
+                this.formBuilder.group({
                     'sadasyaName': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
                     'sadasyaMoNumber': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
-                }])
+                })
+            ])
         });
     };
+    Object.defineProperty(BookCreateComponent.prototype, "companies", {
+        /////////////////////////////////
+        get: function () {
+            return this.bookForm.get('companies');
+        },
+        enumerable: true,
+        configurable: true
+    });
     BookCreateComponent.prototype.addNewCompany = function () {
-        var control = this.bookForm.controls.companies;
-        control.push(this.formBuilder.group({
-            company: [{
-                    boothName: "example comany",
-                    boothMoNumber: "",
-                    boothNumber: ""
-                }]
-        }));
+        this.companies.push(this.formBuilder.group({ boothName: '', boothMoNumber: '', boothNumber: '' }));
     };
     BookCreateComponent.prototype.deleteCompany = function (index) {
-        var control = this.bookForm.controls.companies;
-        control.removeAt(index);
+        this.companies.removeAt(index);
     };
-    BookCreateComponent.prototype.setCompanies = function () {
-        var _this = this;
-        var control = this.bookForm.controls.companies;
-        this.data.company.forEach(function (x) {
-            control.push(_this.formBuilder.group({
-                boothName: x.boothName,
-                boothMoNumber: x.boothMoNumber,
-                boothNumber: x.boothNumber
-            }));
-        });
-    };
-    /////////////////
+    Object.defineProperty(BookCreateComponent.prototype, "sadasya", {
+        /////////////////
+        get: function () {
+            return this.bookForm.get('sadasya');
+        },
+        enumerable: true,
+        configurable: true
+    });
     BookCreateComponent.prototype.addNewSadasya = function () {
-        var control = this.bookForm.controls.sadasya;
-        control.push(this.formBuilder.group({
-            sadasya: [{
-                    sadasyaName: '',
-                    sadasyaMoNumber: ''
-                }]
-        }));
+        this.sadasya.push(this.formBuilder.group({ sadasyaName: '', sadasyaMoNumber: '' }));
     };
     BookCreateComponent.prototype.deleteSadasya = function (index) {
-        var control = this.bookForm.controls.sadasya;
-        control.removeAt(index);
-    };
-    BookCreateComponent.prototype.setSadasya = function () {
-        var _this = this;
-        var control = this.bookForm.controls.sadasya;
-        this.data.sadasya.forEach(function (x) {
-            control.push(_this.formBuilder.group({
-                sadasyaName: x.sadasyaName,
-                sadasyaMoNumber: x.sadasyaMoNumber
-            }));
-        });
+        this.sadasya.removeAt(index);
     };
     /////////////////
     BookCreateComponent.prototype.onFormSubmit = function (form) {
         var _this = this;
         this.api.postBook(form)
             .subscribe(function (res) {
-            var id = res['_id'];
-            _this.router.navigate(['/book-details', id]);
+            // let id = res['_id'];
+            _this.router.navigate(['/books']);
         }, function (err) {
             console.log(err);
         });
@@ -672,7 +643,7 @@ module.exports = ".example-container {\n  display: flex;\n  flex-direction: colu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/book-create']\"><mat-icon>add</mat-icon></a>\n</div>\n<div class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container>\n\n    <!-- Author Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container>\n  \n      <!-- Title Column -->\n      <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> {{element.isbn}} </td>\n      </ng-container>\n  \n      <!-- Author Column -->\n      <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\"> {{element.isbn}} </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div>\n"
+module.exports = "<div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/book-create']\"><mat-icon>add</mat-icon></a>\n</div>\n<div class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container>\n\n    <!-- Author Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container>\n  \n      <!-- Title Column -->\n      <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container>\n  \n      <!-- Author Column -->\n      <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div>\n"
 
 /***/ }),
 
@@ -723,6 +694,9 @@ var BookComponent = /** @class */ (function () {
         this.api.getBooks()
             .subscribe(function (res) {
             console.log("Result =====> " + res);
+            res.array.forEach(function (element) {
+                console.log(element);
+            });
             _this.books = res;
         }, function (err) {
             console.log(err);

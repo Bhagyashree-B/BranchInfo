@@ -34,13 +34,24 @@
       <!-- Title Column -->
       <ng-container matColumnDef="companies">
         <th mat-header-cell *matHeaderCellDef>बूथ</th>
-        <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+        <td mat-cell *matCellDef="let element"> 
+            <div *ngFor="let booth of element.companies">
+               <label>बूथ नाव : {{booth.boothName}}</label><br>
+               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>
+                <label>बूथ क़मांक : {{booth.boothNumber}}</label>
+            </div>          
+        </td>
       </ng-container>
   
       <!-- Author Column -->
       <ng-container matColumnDef="sadasya">
         <th mat-header-cell *matHeaderCellDef>सदस्य</th>
-        <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+        <td mat-cell *matCellDef="let element">  
+           <div *ngFor="let sadasya of element.sadasya">        
+            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>
+            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>
+          </div> 
+        </td>
       </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
