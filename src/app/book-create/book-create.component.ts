@@ -81,8 +81,7 @@ deleteSadasya(index) {
   onFormSubmit(form:NgForm) {
     this.api.postBook(form)
       .subscribe(res => {
-          // let id = res['_id'];
-          this.router.navigate(['/books']);
+          this.router.navigate(['/books']);          
         }, (err) => {
           console.log(err);
         });

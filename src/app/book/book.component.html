@@ -1,7 +1,12 @@
 <div class="button-row">
   <a mat-raised-button color="primary" [routerLink]="['/book-create']"><mat-icon>add</mat-icon></a>
 </div>
-<div class="example-container mat-elevation-z8">
+
+<div class="button-row">
+    <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">Click On This Here Link To Export The Table Data into a CSV File</button>
+  </div>
+
+<div id="dvData" class="example-container mat-elevation-z8">
   <table mat-table #table [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.

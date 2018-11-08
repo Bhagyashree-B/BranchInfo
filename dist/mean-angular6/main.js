@@ -396,11 +396,10 @@ var BookCreateComponent = /** @class */ (function () {
     };
     /////////////////
     BookCreateComponent.prototype.onFormSubmit = function (form) {
-        var _this = this;
         this.api.postBook(form)
             .subscribe(function (res) {
             // let id = res['_id'];
-            _this.router.navigate(['/books']);
+            // this.router.navigate(['/books']);          
         }, function (err) {
             console.log(err);
         });
@@ -643,7 +642,7 @@ module.exports = ".example-container {\n  display: flex;\n  flex-direction: colu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/book-create']\"><mat-icon>add</mat-icon></a>\n</div>\n<div class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container>\n\n    <!-- Author Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container>\n  \n      <!-- Title Column -->\n      <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container>\n  \n      <!-- Author Column -->\n      <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div>\n"
+module.exports = "<div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/book-create']\"><mat-icon>add</mat-icon></a>\n</div>\n\n<div class=\"button-row\">\n    <button id =\"export\" type=\"button\" (click)=\"downloadCSV()\" mat-raised-button color=\"primary\">Click On This Here Link To Export The Table Data into a CSV File</button>\n  </div>\n\n<div id=\"dvData\" class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container>\n\n    <!-- Author Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container>\n  \n      <!-- Title Column -->\n      <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container>\n  \n      <!-- Author Column -->\n      <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div>\n"
 
 /***/ }),
 
@@ -693,14 +692,68 @@ var BookComponent = /** @class */ (function () {
         var _this = this;
         this.api.getBooks()
             .subscribe(function (res) {
-            console.log("Result =====> " + res);
-            res.array.forEach(function (element) {
-                console.log(element);
-            });
             _this.books = res;
+            console.log("Result =====> " + _this.books.isbn);
+            _this.books.forEach(function (book) {
+                console.log(book);
+            });
         }, function (err) {
             console.log(err);
         });
+    };
+    BookComponent.prototype.convertArrayOfObjectsToCSV = function (args) {
+        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+        data = args.data || null;
+        if (data == null || !data.length) {
+            return null;
+        }
+        columnDelimiter = args.columnDelimiter || ',';
+        lineDelimiter = args.lineDelimiter || '\n';
+        keys = Object.keys(data[0]);
+        result = '';
+        result += keys.join(columnDelimiter);
+        result += lineDelimiter;
+        data.forEach(function (item) {
+            ctr = 0;
+            keys.forEach(function (key) {
+                if (ctr > 0)
+                    result += columnDelimiter;
+                var parse_json = typeof item[key] === 'object';
+                if (parse_json == true && key == 'companies') {
+                    item[key].forEach(function (subItem) {
+                        result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
+                    });
+                }
+                else if (parse_json == true && key == 'sadasya') {
+                    item[key].forEach(function (subItem) {
+                        result += " सदस्य नाव :  " + subItem.sadasyaName + " " + " सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber + " ";
+                    });
+                }
+                else {
+                    result += item[key];
+                    ctr++;
+                }
+            });
+            result += lineDelimiter;
+        });
+        return result;
+    };
+    BookComponent.prototype.downloadCSV = function () {
+        var data, filename, link;
+        var csv = this.convertArrayOfObjectsToCSV({
+            data: this.books
+        });
+        if (csv == null)
+            return;
+        filename = 'export.csv';
+        if (!csv.match(/^data:text\/csv/i)) {
+            csv = 'data:text/csv;charset=utf-8,' + csv;
+        }
+        data = encodeURI(csv);
+        link = document.createElement('a');
+        link.setAttribute('href', data);
+        link.setAttribute('download', filename);
+        link.click();
     };
     BookComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
