@@ -6,9 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BookComponent } from './book/book.component';
-import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookCreateComponent } from './book-create/book-create.component';
-import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -24,27 +22,17 @@ import {
 
 const appRoutes: Routes = [
   {
-    path: 'books',
+    path: 'shakha-mahiti',
     component: BookComponent,
     data: { title: 'Book List' }
   },
-  {
-    path: 'book-details/:id',
-    component: BookDetailComponent,
-    data: { title: 'Book Details' }
-  },
-  {
-    path: 'book-create',
+   {
+    path: 'add-shakha-mahiti',
     component: BookCreateComponent,
     data: { title: 'Create Book' }
   },
-  {
-    path: 'book-edit/:id',
-    component: BookEditComponent,
-    data: { title: 'Edit Book' }
-  },
   { 
-    path: 'book-create',
+    path: '',
     component: BookCreateComponent,
     data: { title: 'Create Book' }
   }
@@ -54,9 +42,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BookComponent,
-    BookDetailComponent,
-    BookCreateComponent,
-    BookEditComponent
+    BookCreateComponent    
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

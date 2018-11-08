@@ -11,12 +11,12 @@ import { FormControl, FormGroupDirective, FormBuilder,FormArray, FormGroup, NgFo
 export class BookCreateComponent implements OnInit {
 
   bookForm: FormGroup;
-  isbn:string='';
-  title:string='';
-  description:string='';
-  author:string='';
-  publisher:string='';
-  published_year:string='';
+  shakhaKramank:string='';
+  shakhaGaw:string='';
+  shakhaPramukhMobile:string='';
+  shakhaPramukhNaw:string='';
+  shakhaUpPramukhNaw:string='';
+  shakhaUpPramukhMobile:string='';
   boothName:string='';
   boothMoNumber:string='';
   boothNumber:string='';
@@ -26,19 +26,19 @@ export class BookCreateComponent implements OnInit {
 
   ngOnInit() {
     this.bookForm = this.formBuilder.group({
-      'isbn' : [null, Validators.required],
-      'title' : [null, Validators.required],
-      'description' : [null, Validators.required],
-      'author' : [null, Validators.required],
-      'publisher':[null, Validators.required],
-      'published_year':[null, Validators.required],
-      'companies': this.formBuilder.array([
+      'shakhaKramank' : [null, Validators.required],
+      'shakhaGaw' : [null, Validators.required],
+      'shakhaPramukhMobile' : [null, Validators.required],
+      'shakhaPramukhNaw' : [null, Validators.required],
+      'shakhaUpPramukhNaw':[null, Validators.required],
+      'shakhaUpPramukhMobile':[null, Validators.required],
+      'boothDetails': this.formBuilder.array([
         this.formBuilder.group({
         'boothName' : [null, Validators.required],
         'boothMoNumber':[null, Validators.required],
         'boothNumber':[null, Validators.required]
       })]),
-      'sadasya' : this.formBuilder.array([
+      'sadasyaDetails' : this.formBuilder.array([
         this.formBuilder.group({
         'sadasyaName' : [null, Validators.required],
         'sadasyaMoNumber' : [null, Validators.required]
@@ -48,32 +48,29 @@ export class BookCreateComponent implements OnInit {
 
 /////////////////////////////////
 
-  get companies() {
-    return this.bookForm.get('companies') as FormArray;
+  get boothDetails() {
+    return this.bookForm.get('boothDetails') as FormArray;
   }
 
   addNewCompany() {
-    this.companies.push(this.formBuilder.group({ boothName: '',boothMoNumber : '',boothNumber : ''}));
+    this.boothDetails.push(this.formBuilder.group({ boothName: '',boothMoNumber : '',boothNumber : ''}));
   }
 
   deleteCompany(index) {
-    this.companies.removeAt(index);
+    this.boothDetails.removeAt(index);
   }
-
-
 /////////////////
 
-
-get sadasya() {
-  return this.bookForm.get('sadasya') as FormArray;
+get sadasyaDetails() {
+  return this.bookForm.get('sadasyaDetails') as FormArray;
 }
 
 addNewSadasya() {
-  this.sadasya.push(this.formBuilder.group({ sadasyaName: '',sadasyaMoNumber : ''}));
+  this.sadasyaDetails.push(this.formBuilder.group({ sadasyaName: '',sadasyaMoNumber : ''}));
 }
 
 deleteSadasya(index) {
-  this.sadasya.removeAt(index);
+  this.sadasyaDetails.removeAt(index);
 }
 
 /////////////////
@@ -81,7 +78,7 @@ deleteSadasya(index) {
   onFormSubmit(form:NgForm) {
     this.api.postBook(form)
       .subscribe(res => {
-          this.router.navigate(['/books']);          
+          this.router.navigate(['/shakha-mahiti']);          
         }, (err) => {
           console.log(err);
         });

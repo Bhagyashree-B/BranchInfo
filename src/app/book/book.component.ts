@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -19,7 +18,6 @@ export class BookComponent implements OnInit {
     this.api.getBooks()
       .subscribe(res => {       
         this.books = res;
-        console.log("Result =====> " + this.books.isbn);
         this.books.forEach(book => {
           console.log(book)
         });
@@ -27,7 +25,6 @@ export class BookComponent implements OnInit {
         console.log(err);
       });
   }
-
 
   convertArrayOfObjectsToCSV(args) {
     var result, ctr, keys, columnDelimiter, lineDelimiter, data;
@@ -54,13 +51,13 @@ export class BookComponent implements OnInit {
                 
               var parse_json =typeof item[key] === 'object'
               
-              if(parse_json == true && key == 'companies')
+              if(parse_json == true && key == 'boothDetails')
               {
                item[key].forEach(function(subItem){ 
                   result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
                });
                
-              }else if(parse_json == true && key == 'sadasya'){
+              }else if(parse_json == true && key == 'sadasyaDetails'){
                item[key].forEach(function(subItem){
                   result += " सदस्य नाव :  " + subItem.sadasyaName + " " + " सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber + " ";
                });               

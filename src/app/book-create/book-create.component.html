@@ -4,60 +4,59 @@
 <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
   <h3>शिवसेना शाखा माहिती </h3>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="शाखा क़मांक" formControlName="isbn"
+    <input matInput placeholder="शाखा क़मांक" formControlName="shakhaKramank"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('isbn').valid && bookForm.get('isbn').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaKramank').valid && bookForm.get('shakhaKramank').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="शाखा गाव" formControlName="title"
+    <input matInput placeholder="शाखा गाव" formControlName="shakhaGaw"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('title').valid && bookForm.get('title').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaGaw').valid && bookForm.get('shakhaGaw').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="शाखा प्रमुख नाव" formControlName="author"
+    <input matInput placeholder="शाखा प्रमुख नाव" formControlName="shakhaPramukhNaw"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('author').valid && bookForm.get('author').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaPramukhNaw').valid && bookForm.get('shakhaPramukhNaw').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="शाखा प्रमुख मोबाईल क़मांक" formControlName="description"
+    <input matInput placeholder="शाखा प्रमुख मोबाईल क़मांक" formControlName="shakhaPramukhMobile"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('description').valid && bookForm.get('description').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaPramukhMobile').valid && bookForm.get('shakhaPramukhMobile').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width" >
-    <input matInput placeholder="शाखा उप प्रमुख नाव" formControlName="publisher"
+    <input matInput placeholder="शाखा उप प्रमुख नाव" formControlName="shakhaUpPramukhNaw"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('publisher').valid && bookForm.get('publisher').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaUpPramukhNaw').valid && bookForm.get('shakhaUpPramukhNaw').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="शाखा उप प्रमुख मोबाईल क़मांक" formControlName="published_year"
+    <input matInput placeholder="शाखा उप प्रमुख मोबाईल क़मांक" formControlName="shakhaUpPramukhMobile"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('published_year').valid && bookForm.get('published_year').touched">कृपया हे भरा</span>
+      <span *ngIf="!bookForm.get('shakhaUpPramukhMobile').valid && bookForm.get('shakhaUpPramukhMobile').touched">कृपया हे भरा</span>
     </mat-error>
   </mat-form-field>
 
-  <div formArrayName="companies">
-      <div *ngFor="let item of companies.controls; let pointIndex=index" [formGroupName]="pointIndex" >
-    <!-- <div *ngFor="let comp of bookForm.get('companies').controls; index as i">     -->
+  <div formArrayName="boothDetails">
+      <div *ngFor="let item of boothDetails.controls; let pointIndex=index" [formGroupName]="pointIndex" >
       <h3>बूथ प्रमुख {{pointIndex+1}}: </h3>
       <div >
           <mat-form-field class="example-full-width">
               <input matInput placeholder="नाव" formControlName="boothName">
                      <!-- [errorStateMatcher]="matcher"> -->
               <!-- <mat-error>
-                <span *ngIf="!bookForm.get('companies.boothName').valid && bookForm.get('companies.boothName').touched">कृपया हे भरा</span>
+                <span *ngIf="!bookForm.get('boothDetails.boothName').valid && bookForm.get('boothDetails.boothName').touched">कृपया हे भरा</span>
               </mat-error> -->
             </mat-form-field>
             <mat-form-field class="example-full-width">
@@ -84,9 +83,8 @@
     <a mat-raised-button color="primary" (click)="addNewCompany()"><mat-icon>add</mat-icon></a>
   </mat-card-actions> 
 
-  <div formArrayName="sadasya">
-      <div *ngFor="let item of sadasya.controls; let sadasyaIndex=index" [formGroupName]="sadasyaIndex" >
-      <!-- <div *ngFor="let comp of bookForm.get('sadasya').controls; index as i">     -->
+  <div formArrayName="sadasyaDetails">
+      <div *ngFor="let item of sadasyaDetails.controls; let sadasyaIndex=index" [formGroupName]="sadasyaIndex" >
         <h3>सदस्य {{sadasyaIndex+1}}: </h3>
         <div>
             <mat-form-field class="example-full-width">

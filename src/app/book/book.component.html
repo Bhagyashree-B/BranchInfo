@@ -1,43 +1,44 @@
+
+<h2>"You have successfully uploaded information..!"</h2>
+
 <div class="button-row">
-  <a mat-raised-button color="primary" [routerLink]="['/book-create']"><mat-icon>add</mat-icon></a>
+    <a mat-raised-button color="primary" [routerLink]="['/add-shakha-mahiti']">Add New Details</a>
+    <br>
+    <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">Export Data into a CSV File</button>
 </div>
 
-<div class="button-row">
-    <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">Click On This Here Link To Export The Table Data into a CSV File</button>
-  </div>
-
-<div id="dvData" class="example-container mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource">
+<!-- <div id="dvData" class="example-container mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource"> -->
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Title Column -->
-    <ng-container matColumnDef="शाखा क़मांक">
+    <!-- <ng-container matColumnDef="शाखा क़मांक">
       <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>
       <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.isbn}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- Title Column -->
-    <ng-container matColumnDef="शाखा गाव">
+    <!-- <ng-container matColumnDef="शाखा गाव">
       <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- Author Column -->
-    <ng-container matColumnDef="शाखा प्रमुख नाव">
+    <!-- <ng-container matColumnDef="शाखा प्रमुख नाव">
       <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>
       <td mat-cell *matCellDef="let element"> {{element.author}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- Title Column -->
-    <ng-container matColumnDef="शाखा प्रमुख मोबाईल क़मांक">
+    <!-- <ng-container matColumnDef="शाखा प्रमुख मोबाईल क़मांक">
         <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>
         <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.isbn}} </td>
-      </ng-container>
+      </ng-container> -->
   
       <!-- Title Column -->
-      <ng-container matColumnDef="companies">
+      <!-- <ng-container matColumnDef="companies">
         <th mat-header-cell *matHeaderCellDef>बूथ</th>
         <td mat-cell *matCellDef="let element"> 
             <div *ngFor="let booth of element.companies">
@@ -46,10 +47,10 @@
                 <label>बूथ क़मांक : {{booth.boothNumber}}</label>
             </div>          
         </td>
-      </ng-container>
+      </ng-container> -->
   
       <!-- Author Column -->
-      <ng-container matColumnDef="sadasya">
+      <!-- <ng-container matColumnDef="sadasya">
         <th mat-header-cell *matHeaderCellDef>सदस्य</th>
         <td mat-cell *matCellDef="let element">  
            <div *ngFor="let sadasya of element.sadasya">        
@@ -62,4 +63,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/book-details/', row._id]"></tr>
   </table>
-</div>
+</div> -->
