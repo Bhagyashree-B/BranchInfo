@@ -1,15 +1,17 @@
 <!-- <div class="button-row">
   <a mat-raised-button color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a>
 </div> -->
-<form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+<form [formGroup]="bookForm" class="form" (ngSubmit)="onFormSubmit(bookForm.value)">
   <h3>शिवसेना शाखा माहिती </h3>
-  <mat-form-field class="example-full-width">
+  <!-- TODO : Remove this from DB as well
+ -->
+  <!-- <mat-form-field class="example-full-width">
     <input matInput placeholder="शाखा क़मांक" formControlName="shakhaKramank"
            [errorStateMatcher]="matcher">
     <mat-error>
       <span *ngIf="!bookForm.get('shakhaKramank').valid && bookForm.get('shakhaKramank').touched">कृपया हे भरा</span>
     </mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
   <mat-form-field class="example-full-width">
     <input matInput placeholder="शाखा गाव" formControlName="shakhaGaw"
            [errorStateMatcher]="matcher">

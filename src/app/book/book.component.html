@@ -1,9 +1,6 @@
-
-<h2>"You have successfully uploaded information..!"</h2>
-
 <div class="button-row">
-    <a mat-raised-button color="primary" [routerLink]="['/add-shakha-mahiti']">Add New Details</a>
-    <br>
+    <a mat-raised-button color="primary" class="shakhabtn" [routerLink]="['/add-shakha-mahiti']">Add New Details</a>
+    
     <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">Export Data into a CSV File</button>
 </div>
 

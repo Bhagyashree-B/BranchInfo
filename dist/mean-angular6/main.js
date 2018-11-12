@@ -268,7 +268,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.example-full-width:nth-last-child() {\n  margin-bottom: 10px;\n}\n\n.button-row {\n  margin: 10px 0;\n}\n"
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.example-full-width:nth-last-child() {\n  margin-bottom: 10px;\n}\n\n.button-row {\n  margin: 10px 0;\n}\n\n.form{\n  padding: 10px;\n  background-color: #ffc299;\n}\n"
 
 /***/ }),
 
@@ -279,7 +279,7 @@ module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/books']\"><mat-icon>list</mat-icon></a>\n</div> -->\n<form [formGroup]=\"bookForm\" (ngSubmit)=\"onFormSubmit(bookForm.value)\">\n  <h3>शिवसेना शाखा माहिती </h3>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा क़मांक\" formControlName=\"shakhaKramank\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaKramank').valid && bookForm.get('shakhaKramank').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा गाव\" formControlName=\"shakhaGaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaGaw').valid && bookForm.get('shakhaGaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख नाव\" formControlName=\"shakhaPramukhNaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaPramukhNaw').valid && bookForm.get('shakhaPramukhNaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख मोबाईल क़मांक\" formControlName=\"shakhaPramukhMobile\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaPramukhMobile').valid && bookForm.get('shakhaPramukhMobile').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\" >\n    <input matInput placeholder=\"शाखा उप प्रमुख नाव\" formControlName=\"shakhaUpPramukhNaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaUpPramukhNaw').valid && bookForm.get('shakhaUpPramukhNaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा उप प्रमुख मोबाईल क़मांक\" formControlName=\"shakhaUpPramukhMobile\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaUpPramukhMobile').valid && bookForm.get('shakhaUpPramukhMobile').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <div formArrayName=\"boothDetails\">\n      <div *ngFor=\"let item of boothDetails.controls; let pointIndex=index\" [formGroupName]=\"pointIndex\" >\n      <h3>बूथ प्रमुख {{pointIndex+1}}: </h3>\n      <div >\n          <mat-form-field class=\"example-full-width\">\n              <input matInput placeholder=\"नाव\" formControlName=\"boothName\">\n                     <!-- [errorStateMatcher]=\"matcher\"> -->\n              <!-- <mat-error>\n                <span *ngIf=\"!bookForm.get('boothDetails.boothName').valid && bookForm.get('boothDetails.boothName').touched\">कृपया हे भरा</span>\n              </mat-error> -->\n            </mat-form-field>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"boothMoNumber\">\n                       <!-- [errorStateMatcher]=\"matcher\" -->\n                <!-- <mat-error>\n                  <span *ngIf=\"!bookForm.get('boothMoNumber').valid && bookForm.get('boothMoNumber').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"बूथ क़मांक: \" formControlName=\"boothNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\" -->\n                  <!-- <mat-error>\n                    <span *ngIf=\"!bookForm.get('boothNumber').valid && bookForm.get('boothNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteCompany(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions> \n      </div>\n    </div>\n  </div> \n  <mat-card-actions>\n    <a mat-raised-button color=\"primary\" (click)=\"addNewCompany()\"><mat-icon>add</mat-icon></a>\n  </mat-card-actions> \n\n  <div formArrayName=\"sadasyaDetails\">\n      <div *ngFor=\"let item of sadasyaDetails.controls; let sadasyaIndex=index\" [formGroupName]=\"sadasyaIndex\" >\n        <h3>सदस्य {{sadasyaIndex+1}}: </h3>\n        <div>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"नाव\" formControlName=\"sadasyaName\">\n                       <!-- [errorStateMatcher]=\"matcher\">\n                <mat-error>\n                  <span *ngIf=\"!bookForm.get('sadasyaName').valid && bookForm.get('sadasyaName').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"sadasyaMoNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\">\n                  <mat-error>\n                    <span *ngIf=\"!bookForm.get('sadasyaMoNumber').valid && bookForm.get('sadasyaMoNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteSadasya(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions>\n        </div>\n      </div>\n    </div> \n    <mat-card-actions>\n      <a mat-raised-button color=\"primary\" (click)=\"addNewSadasya()\"><mat-icon>add</mat-icon></a>\n    </mat-card-actions>  \n\n<div class=\"form-group\">\n  <div class=\"button-row\">\n    <button type=\"submit\" [disabled]=\"!bookForm.valid\" mat-raised-button color=\"primary\"><mat-icon>save</mat-icon></button>\n  </div>\n  </div>\n</form>\n"
+module.exports = "<!-- <div class=\"button-row\">\n  <a mat-raised-button color=\"primary\" [routerLink]=\"['/books']\"><mat-icon>list</mat-icon></a>\n</div> -->\n<form [formGroup]=\"bookForm\" class=\"form\" (ngSubmit)=\"onFormSubmit(bookForm.value)\">\n  <h3>शिवसेना शाखा माहिती </h3>\n  <!-- TODO : Remove this from DB as well\n -->\n  <!-- <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा क़मांक\" formControlName=\"shakhaKramank\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaKramank').valid && bookForm.get('shakhaKramank').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field> -->\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा गाव\" formControlName=\"shakhaGaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaGaw').valid && bookForm.get('shakhaGaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख नाव\" formControlName=\"shakhaPramukhNaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaPramukhNaw').valid && bookForm.get('shakhaPramukhNaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा प्रमुख मोबाईल क़मांक\" formControlName=\"shakhaPramukhMobile\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaPramukhMobile').valid && bookForm.get('shakhaPramukhMobile').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field class=\"example-full-width\" >\n    <input matInput placeholder=\"शाखा उप प्रमुख नाव\" formControlName=\"shakhaUpPramukhNaw\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaUpPramukhNaw').valid && bookForm.get('shakhaUpPramukhNaw').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"शाखा उप प्रमुख मोबाईल क़मांक\" formControlName=\"shakhaUpPramukhMobile\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!bookForm.get('shakhaUpPramukhMobile').valid && bookForm.get('shakhaUpPramukhMobile').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n\n  <div formArrayName=\"boothDetails\">\n      <div *ngFor=\"let item of boothDetails.controls; let pointIndex=index\" [formGroupName]=\"pointIndex\" >\n      <h3>बूथ प्रमुख {{pointIndex+1}}: </h3>\n      <div >\n          <mat-form-field class=\"example-full-width\">\n              <input matInput placeholder=\"नाव\" formControlName=\"boothName\">\n                     <!-- [errorStateMatcher]=\"matcher\"> -->\n              <!-- <mat-error>\n                <span *ngIf=\"!bookForm.get('boothDetails.boothName').valid && bookForm.get('boothDetails.boothName').touched\">कृपया हे भरा</span>\n              </mat-error> -->\n            </mat-form-field>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"boothMoNumber\">\n                       <!-- [errorStateMatcher]=\"matcher\" -->\n                <!-- <mat-error>\n                  <span *ngIf=\"!bookForm.get('boothMoNumber').valid && bookForm.get('boothMoNumber').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"बूथ क़मांक: \" formControlName=\"boothNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\" -->\n                  <!-- <mat-error>\n                    <span *ngIf=\"!bookForm.get('boothNumber').valid && bookForm.get('boothNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteCompany(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions> \n      </div>\n    </div>\n  </div> \n  <mat-card-actions>\n    <a mat-raised-button color=\"primary\" (click)=\"addNewCompany()\"><mat-icon>add</mat-icon></a>\n  </mat-card-actions> \n\n  <div formArrayName=\"sadasyaDetails\">\n      <div *ngFor=\"let item of sadasyaDetails.controls; let sadasyaIndex=index\" [formGroupName]=\"sadasyaIndex\" >\n        <h3>सदस्य {{sadasyaIndex+1}}: </h3>\n        <div>\n            <mat-form-field class=\"example-full-width\">\n                <input matInput placeholder=\"नाव\" formControlName=\"sadasyaName\">\n                       <!-- [errorStateMatcher]=\"matcher\">\n                <mat-error>\n                  <span *ngIf=\"!bookForm.get('sadasyaName').valid && bookForm.get('sadasyaName').touched\">कृपया हे भरा</span>\n                </mat-error> -->\n              </mat-form-field>\n              <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"मोबाईल क़मांक\" formControlName=\"sadasyaMoNumber\">\n                         <!-- [errorStateMatcher]=\"matcher\">\n                  <mat-error>\n                    <span *ngIf=\"!bookForm.get('sadasyaMoNumber').valid && bookForm.get('sadasyaMoNumber').touched\">कृपया हे भरा</span>\n                  </mat-error> -->\n                </mat-form-field>    \n                <mat-card-actions>\n                  <a mat-raised-button color=\"warn\" (click)=\"deleteSadasya(i)\"><mat-icon>delete</mat-icon></a>\n                </mat-card-actions>\n        </div>\n      </div>\n    </div> \n    <mat-card-actions>\n      <a mat-raised-button color=\"primary\" (click)=\"addNewSadasya()\"><mat-icon>add</mat-icon></a>\n    </mat-card-actions>  \n\n<div class=\"form-group\">\n  <div class=\"button-row\">\n    <button type=\"submit\" [disabled]=\"!bookForm.valid\" mat-raised-button color=\"primary\"><mat-icon>save</mat-icon></button>\n  </div>\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -310,6 +310,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+// import {Inject} from '@angular/core';
 var BookCreateComponent = /** @class */ (function () {
     function BookCreateComponent(router, api, formBuilder) {
         this.router = router;
@@ -329,10 +331,10 @@ var BookCreateComponent = /** @class */ (function () {
     }
     BookCreateComponent.prototype.ngOnInit = function () {
         this.bookForm = this.formBuilder.group({
-            'shakhaKramank': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            // 'shakhaKramank' : [null, Validators.required],
             'shakhaGaw': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            'shakhaPramukhMobile': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'shakhaPramukhNaw': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            'shakhaPramukhMobile': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'shakhaUpPramukhNaw': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'shakhaUpPramukhMobile': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'boothDetails': this.formBuilder.array([
@@ -383,6 +385,15 @@ var BookCreateComponent = /** @class */ (function () {
         var _this = this;
         this.api.postBook(form)
             .subscribe(function (res) {
+            // const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+            //   width: '250px',
+            //   data: {name: "this.name", animal: "this.animal"}
+            // });
+            // dialogRef.afterClosed().subscribe(result => {
+            //   console.log('The dialog was closed');
+            //   this.router.navigate(['/shakha-mahiti']); 
+            // });  
+            alert("Congratulations, data is added successfully...!");
             _this.router.navigate(['/shakha-mahiti']);
         }, function (err) {
             console.log(err);
@@ -399,6 +410,22 @@ var BookCreateComponent = /** @class */ (function () {
     return BookCreateComponent;
 }());
 
+// export interface DialogData {
+//   animal: string;
+//   name: string;
+// }
+// @Component({
+//   selector: 'dialog-overview-example-dialog',
+//   templateUrl: 'dialog-overview-example-dialog.html',
+// })
+// export class DialogOverviewExampleDialog {
+//   constructor(
+//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+//     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 
 
 /***/ }),
@@ -410,7 +437,7 @@ var BookCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: flex;\n  flex-direction: column;\n  max-height: 500px;\n  min-width: 300px;\n  overflow: auto;\n}\n\n.isbn-col {\n  flex: 0 0 100px !important;\n  white-space: unset !important;\n}\n\n.button-row {\n  margin: 10px 0;\n}\n"
+module.exports = ".example-container {\n  display: flex;\n  flex-direction: column;\n  max-height: 500px;\n  min-width: 300px;\n  overflow: auto;\n}\n\n.isbn-col {\n  flex: 0 0 100px !important;\n  white-space: unset !important;\n}\n\n.button-row {\n  margin: 10px 0;\n}\n\n.shakhabtn{\n  margin-bottom: 10px;\n  margin-right: 10px;\n}\n"
 
 /***/ }),
 
@@ -421,7 +448,7 @@ module.exports = ".example-container {\n  display: flex;\n  flex-direction: colu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h2>\"You have successfully uploaded information..!\"</h2>\n\n<div class=\"button-row\">\n    <a mat-raised-button color=\"primary\" [routerLink]=\"['/add-shakha-mahiti']\">Add New Details</a>\n    <br>\n    <button id =\"export\" type=\"button\" (click)=\"downloadCSV()\" mat-raised-button color=\"primary\">Export Data into a CSV File</button>\n</div>\n\n<!-- <div id=\"dvData\" class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\"> -->\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container> -->\n\n    <!-- Author Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container> -->\n  \n      <!-- Title Column -->\n      <!-- <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container> -->\n  \n      <!-- Author Column -->\n      <!-- <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div> -->\n"
+module.exports = "<div class=\"button-row\">\n    <a mat-raised-button color=\"primary\" class=\"shakhabtn\" [routerLink]=\"['/add-shakha-mahiti']\">Add New Details</a>\n    \n    <button id =\"export\" type=\"button\" (click)=\"downloadCSV()\" mat-raised-button color=\"primary\">Export Data into a CSV File</button>\n</div>\n\n<!-- <div id=\"dvData\" class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\"> -->\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container> -->\n\n    <!-- Author Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container> -->\n  \n      <!-- Title Column -->\n      <!-- <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container> -->\n  \n      <!-- Author Column -->\n      <!-- <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div> -->\n"
 
 /***/ }),
 
@@ -480,7 +507,7 @@ var BookComponent = /** @class */ (function () {
         });
     };
     BookComponent.prototype.convertArrayOfObjectsToCSV = function (args) {
-        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+        var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys;
         data = args.data || null;
         if (data == null || !data.length) {
             return null;
@@ -488,12 +515,13 @@ var BookComponent = /** @class */ (function () {
         columnDelimiter = args.columnDelimiter || ',';
         lineDelimiter = args.lineDelimiter || '\n';
         keys = Object.keys(data[0]);
+        filteredKeys = [keys[2], keys[3], keys[4], keys[5], keys[6], keys[7], keys[8]];
         result = '';
-        result += keys.join(columnDelimiter);
+        result += filteredKeys.join(columnDelimiter);
         result += lineDelimiter;
         data.forEach(function (item) {
             ctr = 0;
-            keys.forEach(function (key) {
+            filteredKeys.forEach(function (key) {
                 if (ctr > 0)
                     result += columnDelimiter;
                 var parse_json = typeof item[key] === 'object';
@@ -508,8 +536,11 @@ var BookComponent = /** @class */ (function () {
                     });
                 }
                 else {
-                    result += item[key];
-                    ctr++;
+                    //Ignore record ids and updated time
+                    if (key != "_id" || key != "shakhaKramank" || key != "updated_date" || key != "__v") {
+                        result += item[key];
+                        ctr++;
+                    }
                 }
             });
             result += lineDelimiter;

@@ -26,8 +26,10 @@ export class BookComponent implements OnInit {
       });
   }
 
+  
+
   convertArrayOfObjectsToCSV(args) {
-    var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+    var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys;
 
     data = args.data || null;
     if (data == null || !data.length) {
@@ -39,13 +41,15 @@ export class BookComponent implements OnInit {
 
     keys = Object.keys(data[0]);
 
+    filteredKeys = [keys[2],keys[3],keys[4],keys[5],keys[6],keys[7],keys[8]];
+
     result = '';
-    result += keys.join(columnDelimiter);
+    result += filteredKeys.join(columnDelimiter);
     result += lineDelimiter;
 
     data.forEach(function(item) {
         ctr = 0;
-        keys.forEach(function(key) {
+        filteredKeys.forEach(function(key) {
             if (ctr > 0) 
             result += columnDelimiter;               
                 
@@ -62,9 +66,13 @@ export class BookComponent implements OnInit {
                   result += " सदस्य नाव :  " + subItem.sadasyaName + " " + " सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber + " ";
                });               
               }else{
-              result += item[key];
-              ctr++;
-              }           
+                //Ignore record ids and updated time
+               if(key != "_id" || key != "shakhaKramank" || key != "updated_date" || key != "__v"  ) 
+               {
+               result += item[key];
+               ctr++;
+              }
+            }           
         });
         result += lineDelimiter;
     });
