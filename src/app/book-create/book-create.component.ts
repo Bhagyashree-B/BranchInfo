@@ -24,6 +24,7 @@ export class BookCreateComponent implements OnInit {
   boothNumber:string='';
   sadasyaName:string='';
   sadasyaMoNumber:string='';
+  
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {

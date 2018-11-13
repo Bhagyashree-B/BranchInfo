@@ -1,8 +1,25 @@
 <div class="button-row">
     <a mat-raised-button color="primary" class="shakhabtn" [routerLink]="['/add-shakha-mahiti']">Add New Details</a>
-    
-    <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">Export Data into a CSV File</button>
 </div>
+
+<form [formGroup]="csvForm" class="form" (ngSubmit)="onFormSubmit(csvForm.value)">
+  <h4> पूर्ण माहिती मिळवण्यासाठी कृपया टोकन टाका </h4>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="token" formControlName="token"
+           [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!csvForm.get('token').valid && csvForm.get('token').touched">कृपया हे भरा</span>
+    </mat-error>
+  </mat-form-field>
+  <div class="button-row">
+    <button type="submit" [disabled]="!csvForm.valid" mat-raised-button color="primary">Submit</button>
+  </div>
+  </form>
+
+  <div class="button-row">
+    <button id ="export" [disabled]="currentState !== '2'" type="button" (click)="downloadCSV()" mat-raised-button color="primary">
+      फाइल मध्ये घ्या</button>
+  </div>
 
 <!-- <div id="dvData" class="example-container mat-elevation-z8">
   <table mat-table #table [dataSource]="dataSource"> -->

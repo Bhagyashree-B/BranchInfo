@@ -448,7 +448,7 @@ module.exports = ".example-container {\n  display: flex;\n  flex-direction: colu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"button-row\">\n    <a mat-raised-button color=\"primary\" class=\"shakhabtn\" [routerLink]=\"['/add-shakha-mahiti']\">Add New Details</a>\n    \n    <button id =\"export\" type=\"button\" (click)=\"downloadCSV()\" mat-raised-button color=\"primary\">Export Data into a CSV File</button>\n</div>\n\n<!-- <div id=\"dvData\" class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\"> -->\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container> -->\n\n    <!-- Author Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container> -->\n  \n      <!-- Title Column -->\n      <!-- <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container> -->\n  \n      <!-- Author Column -->\n      <!-- <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div> -->\n"
+module.exports = "<div class=\"button-row\">\n    <a mat-raised-button color=\"primary\" class=\"shakhabtn\" [routerLink]=\"['/add-shakha-mahiti']\">Add New Details</a>\n</div>\n\n<form [formGroup]=\"csvForm\" class=\"form\" (ngSubmit)=\"onFormSubmit(csvForm.value)\">\n  <h4> पूर्ण माहिती मिळवण्यासाठी कृपया टोकन टाका </h4>\n  <mat-form-field class=\"example-full-width\">\n    <input matInput placeholder=\"token\" formControlName=\"token\"\n           [errorStateMatcher]=\"matcher\">\n    <mat-error>\n      <span *ngIf=\"!csvForm.get('token').valid && csvForm.get('token').touched\">कृपया हे भरा</span>\n    </mat-error>\n  </mat-form-field>\n  <div class=\"button-row\">\n    <button type=\"submit\" [disabled]=\"!csvForm.valid\" mat-raised-button color=\"primary\">Submit</button>\n  </div>\n  </form>\n\n  <div class=\"button-row\">\n    <button id =\"export\" [disabled]=\"currentState !== '2'\" type=\"button\" (click)=\"downloadCSV()\" mat-raised-button color=\"primary\">\n      फाइल मध्ये घ्या</button>\n  </div>\n\n<!-- <div id=\"dvData\" class=\"example-container mat-elevation-z8\">\n  <table mat-table #table [dataSource]=\"dataSource\"> -->\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा क़मांक\">\n      <th mat-header-cell *matHeaderCellDef> शाखा क़मांक </th>\n      <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा गाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा गाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\n    </ng-container> -->\n\n    <!-- Author Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख नाव\">\n      <th mat-header-cell *matHeaderCellDef> शाखा प्रमुख नाव </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\n    </ng-container> -->\n\n    <!-- Title Column -->\n    <!-- <ng-container matColumnDef=\"शाखा प्रमुख मोबाईल क़मांक\">\n        <th mat-header-cell *matHeaderCellDef>शाखा प्रमुख मोबाईल क़मांक </th>\n        <td mat-cell *matCellDef=\"let element\" class=\"isbn-col\"> {{element.isbn}} </td>\n      </ng-container> -->\n  \n      <!-- Title Column -->\n      <!-- <ng-container matColumnDef=\"companies\">\n        <th mat-header-cell *matHeaderCellDef>बूथ</th>\n        <td mat-cell *matCellDef=\"let element\"> \n            <div *ngFor=\"let booth of element.companies\">\n               <label>बूथ नाव : {{booth.boothName}}</label><br>\n               <label>बूथ मोबाईल क़मांक : {{booth.boothMoNumber}}</label><br>\n                <label>बूथ क़मांक : {{booth.boothNumber}}</label>\n            </div>          \n        </td>\n      </ng-container> -->\n  \n      <!-- Author Column -->\n      <!-- <ng-container matColumnDef=\"sadasya\">\n        <th mat-header-cell *matHeaderCellDef>सदस्य</th>\n        <td mat-cell *matCellDef=\"let element\">  \n           <div *ngFor=\"let sadasya of element.sadasya\">        \n            <label>सदस्य नाव : {{sadasya.sadasyaName}}</label><br>\n            <label>सदस्य मोबाईल क़मांक : {{sadasya.sadasyaMoNumber}}</label>\n          </div> \n        </td>\n      </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" [routerLink]=\"['/book-details/', row._id]\"></tr>\n  </table>\n</div> -->\n"
 
 /***/ }),
 
@@ -466,6 +466,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api.service */ "./src/app/api.service.ts");
 /* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -488,14 +489,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var BookComponent = /** @class */ (function () {
-    function BookComponent(api) {
+    function BookComponent(api, formBuilder) {
         this.api = api;
+        this.formBuilder = formBuilder;
+        this.token = '';
+        this.currentState = '1';
         this.displayedColumns = ['शाखा क़मांक', 'शाखा गाव', 'शाखा प्रमुख नाव', 'शाखा प्रमुख मोबाईल क़मांक', 'companies', 'sadasya'];
         this.dataSource = new BookDataSource(this.api);
     }
     BookComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.csvForm = this.formBuilder.group({
+            'token': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
         this.api.getBooks()
             .subscribe(function (res) {
             _this.books = res;
@@ -506,6 +514,16 @@ var BookComponent = /** @class */ (function () {
             console.log(err);
         });
     };
+    BookComponent.prototype.onFormSubmit = function (form) {
+        var token = this.csvForm.get('token').value;
+        if (token == 'shakha@123') {
+            this.currentState = '2';
+        }
+        else {
+            this.currentState = '1';
+        }
+    };
+    ////////////////////////////////////////////////////////////////////////////
     BookComponent.prototype.convertArrayOfObjectsToCSV = function (args) {
         var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys;
         data = args.data || null;
@@ -515,7 +533,7 @@ var BookComponent = /** @class */ (function () {
         columnDelimiter = args.columnDelimiter || ',';
         lineDelimiter = args.lineDelimiter || '\n';
         keys = Object.keys(data[0]);
-        filteredKeys = [keys[2], keys[3], keys[4], keys[5], keys[6], keys[7], keys[8]];
+        filteredKeys = [keys[1], keys[2], keys[3], keys[4], keys[5], keys[6], keys[7]];
         result = '';
         result += filteredKeys.join(columnDelimiter);
         result += lineDelimiter;
@@ -570,7 +588,7 @@ var BookComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./book.component.html */ "./src/app/book/book.component.html"),
             styles: [__webpack_require__(/*! ./book.component.css */ "./src/app/book/book.component.css")]
         }),
-        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
     ], BookComponent);
     return BookComponent;
 }());

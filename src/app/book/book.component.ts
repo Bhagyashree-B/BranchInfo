@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
+import {  FormGroup,FormBuilder,Validators,NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -8,13 +9,22 @@ import { DataSource } from '@angular/cdk/collections';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
+
+  csvForm: FormGroup;
+  token :string='';
+  currentState:string = '1';
+
   books: any;
   displayedColumns = ['शाखा क़मांक', 'शाखा गाव', 'शाखा प्रमुख नाव','शाखा प्रमुख मोबाईल क़मांक', 'companies','sadasya'];
   dataSource = new BookDataSource(this.api);
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.csvForm = this.formBuilder.group({
+      'token' : [null, Validators.required]         
+    })
+
     this.api.getBooks()
       .subscribe(res => {       
         this.books = res;
@@ -24,9 +34,19 @@ export class BookComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+  }  
+
+  onFormSubmit(form:NgForm) {
+     var token = this.csvForm.get('token').value
+    if(token == 'shakha@123')
+    {
+      this.currentState = '2'
+    }else{
+      this.currentState = '1'
+    }    
   }
 
-  
+  ////////////////////////////////////////////////////////////////////////////
 
   convertArrayOfObjectsToCSV(args) {
     var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys;
@@ -41,7 +61,7 @@ export class BookComponent implements OnInit {
 
     keys = Object.keys(data[0]);
 
-    filteredKeys = [keys[2],keys[3],keys[4],keys[5],keys[6],keys[7],keys[8]];
+    filteredKeys = [keys[1],keys[2],keys[3],keys[4],keys[5],keys[6],keys[7]];
 
     result = '';
     result += filteredKeys.join(columnDelimiter);
