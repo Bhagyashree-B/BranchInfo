@@ -2,7 +2,7 @@
     <a mat-raised-button color="primary" class="shakhabtn" [routerLink]="['/add-shakha-mahiti']">Add New Details</a>
 </div>
 
-<form [formGroup]="csvForm" class="form" (ngSubmit)="onFormSubmit(csvForm.value)">
+<!-- <form [formGroup]="csvForm" class="form" (ngSubmit)="onFormSubmit(csvForm.value)">
   <h4> पूर्ण माहिती मिळवण्यासाठी कृपया टोकन टाका </h4>
   <mat-form-field class="example-full-width">
     <input matInput placeholder="token" formControlName="token"
@@ -14,10 +14,11 @@
   <div class="button-row">
     <button type="submit" [disabled]="!csvForm.valid" mat-raised-button color="primary">Submit</button>
   </div>
-  </form>
+  // [disabled]="currentState !== '2'"
+  </form> -->
 
   <div class="button-row">
-    <button id ="export" [disabled]="currentState !== '2'" type="button" (click)="downloadCSV()" mat-raised-button color="primary">
+    <button id ="export" type="button" (click)="downloadCSV()" mat-raised-button color="primary">
       फाइल मध्ये घ्या</button>
   </div>
 
