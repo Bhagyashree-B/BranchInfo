@@ -67,7 +67,7 @@ export class BookComponent implements OnInit {
     result += filteredKeys.join(columnDelimiter);
     result += lineDelimiter;
 
-    data.forEach(function(item) {
+    data.forEach(function(item,i) {
         ctr = 0;
         filteredKeys.forEach(function(key) {
             if (ctr > 0) 
@@ -78,12 +78,21 @@ export class BookComponent implements OnInit {
               if(parse_json == true && key == 'boothDetails')
               {
                item[key].forEach(function(subItem){ 
-                  result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
-               });
-               
+                 console.log("index === > ",i)
+                  //result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
+                  result += "बूथ नाव :"+subItem.boothName;
+                  result += "\n,,,,,,";
+                  result +=  "बूथ मोबाईल क़मांक :"+ subItem.boothMoNumber;
+                  result += "\n,,,,,,";
+                  result += "बूथ क़मांक :"+subItem.boothNumber;                  
+                 });        
+         
               }else if(parse_json == true && key == 'sadasyaDetails'){
                item[key].forEach(function(subItem){
-                  result += " सदस्य नाव :  " + subItem.sadasyaName + " " + " सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber + " ";
+                  result += "सदस्य नाव :  " + subItem.sadasyaName;
+                  result += "\n,,,,,,";
+                  result += "सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber;
+                  result += "\n,,,,,,";
                });               
               }else{
                 //Ignore record ids and updated time
