@@ -81,9 +81,9 @@ export class BookComponent implements OnInit {
                  console.log("index === > ",i)
                   //result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
                   result += "बूथ नाव :"+subItem.boothName;
-                  result += "\n,,,,,,";
+                  result += "\n,,,,,";
                   result +=  "बूथ मोबाईल क़मांक :"+ subItem.boothMoNumber;
-                  result += "\n,,,,,,";
+                  result += "\n,,,,,";
                   result += "बूथ क़मांक :"+subItem.boothNumber;                  
                  });        
          
