@@ -525,7 +525,7 @@ var BookComponent = /** @class */ (function () {
     };
     ////////////////////////////////////////////////////////////////////////////
     BookComponent.prototype.convertArrayOfObjectsToCSV = function (args) {
-        var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys;
+        var result, ctr, keys, columnDelimiter, lineDelimiter, data, filteredKeys, boothInfo, sadasyaInfo;
         data = args.data || null;
         if (data == null || !data.length) {
             return null;
@@ -533,38 +533,49 @@ var BookComponent = /** @class */ (function () {
         columnDelimiter = args.columnDelimiter || ',';
         lineDelimiter = args.lineDelimiter || '\n';
         keys = Object.keys(data[0]);
-        filteredKeys = [keys[1], keys[2], keys[3], keys[4], keys[5], keys[6], keys[7]];
+        filteredKeys = [keys[1], keys[2], keys[3], keys[4], keys[5], keys[6], keys[7], keys[8]];
         result = '';
         result += filteredKeys.join(columnDelimiter);
         result += lineDelimiter;
         data.forEach(function (item, i) {
             ctr = 0;
-            filteredKeys.forEach(function (key) {
+            filteredKeys.forEach(function (key, k) {
                 if (ctr > 0)
                     result += columnDelimiter;
                 var parse_json = typeof item[key] === 'object';
+                console.log("item[key] : " + item[key] + " at index " + i);
+                console.log("item[key] : " + key + " at index => " + k);
                 if (parse_json == true && key == 'boothDetails') {
-                    item[key].forEach(function (subItem) {
-                        console.log("index === > ", i);
-                        //result += " बूथ नाव :  " + subItem.boothName + " " + " बूथ मोबाईल क़मांक : " + subItem.boothMoNumber + " बूथ क़मांक :  " + subItem.boothNumber + " ";
-                        result += "बूथ नाव :" + subItem.boothName;
+                    var boothLen = item[filteredKeys[6]].length;
+                    var sadasyaLen = item[filteredKeys[7]].length;
+                    var l = Math.max(boothLen, sadasyaLen);
+                    if (boothLen > sadasyaLen) {
+                        for (i = sadasyaLen; i <= boothLen; i++) {
+                            sadasyaInfo = item[filteredKeys[7]].push({ sadasyaName: "", sadasyaMoNumber: "" });
+                        }
+                    }
+                    if (boothLen < sadasyaLen) {
+                        for (i = boothLen; i <= sadasyaLen; i++) {
+                            boothInfo = item[filteredKeys[6]].push({ boothName: "", boothMoNumber: "", boothNumber: "" });
+                        }
+                    }
+                    for (i = 0; i < l; i++) {
+                        console.log("wrerwetwtre =?> " + item[filteredKeys[7]]);
+                        result += item[filteredKeys[6]][i].boothName != "" ? "बूथ नाव :" + item[filteredKeys[6]][i].boothName : "";
+                        result += columnDelimiter;
+                        result += item[filteredKeys[7]][i].sadasyaName != "" ? "सदस्य नाव :  " + item[filteredKeys[7]][i].sadasyaName : "";
                         result += "\n,,,,,,";
-                        result += "बूथ मोबाईल क़मांक :" + subItem.boothMoNumber;
+                        result += item[filteredKeys[6]][i].boothMoNumber != "" ? "बूथ मोबाईल क़मांक :" + item[filteredKeys[6]][i].boothMoNumber : "";
+                        result += columnDelimiter;
+                        result += item[filteredKeys[7]][i].sadasyaMoNumber != "" ? "सदस्य मोबाईल क़मांक : " + item[filteredKeys[7]][i].sadasyaMoNumber : "";
                         result += "\n,,,,,,";
-                        result += "बूथ क़मांक :" + subItem.boothNumber;
-                    });
+                        result += item[filteredKeys[6]][i].boothNumber != "" ? "बूथ क़मांक :" + item[filteredKeys[6]][i].boothNumber : "";
+                        result += columnDelimiter;
+                        result += "\n,,,,,,";
+                    }
                 }
-                else if (parse_json == true && key == 'sadasyaDetails') {
-                    item[key].forEach(function (subItem) {
-                        result += "सदस्य नाव :  " + subItem.sadasyaName;
-                        result += "\n,,,,,,";
-                        result += "सदस्य मोबाईल क़मांक : " + subItem.sadasyaMoNumber;
-                        result += "\n,,,,,,";
-                    });
-                }
-                else {
-                    //Ignore record ids and updated time
-                    if (key != "_id" || key != "shakhaKramank" || key != "updated_date" || key != "__v") {
+                else if (parse_json == false) {
+                    if (key != "_id" || key != "shakhaKramank" || key != "sadasyaDetails" || key != "updated_date" || key != "__v") {
                         result += item[key];
                         ctr++;
                     }
